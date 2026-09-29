@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0f14;
+  --foreground: #f5f7fa;
+  --accent: #8ecbff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    var(--background);
+
+  background-size: 64px 64px;
+
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ================================
+   PORTFOLIO ANIMATIONS
+================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+
+/* Staggered animations */
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+
+/* Respect users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ========================================= */
+/* CUSTOM CURSOR                             */
+/* ========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none !important;
+  }
+
+  /* Center dot */
+  .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 9999px;
+
+    background: #8ecbff;
+
+    box-shadow:
+      0 0 8px rgba(142, 203, 255, 0.9),
+      0 0 18px rgba(142, 203, 255, 0.45);
+
+    pointer-events: none;
+
+    z-index: 999999;
+
+    transition:
+      opacity 0.2s ease,
+      width 0.2s ease,
+      height 0.2s ease;
+  }
+
+
+  /* Outer ring */
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 9999px;
+
+    border: 1px solid rgba(142, 203, 255, 0.5);
+
+    background: rgba(142, 203, 255, 0.025);
+
+    box-shadow:
+      0 0 20px rgba(142, 203, 255, 0.08);
+
+    pointer-events: none;
+
+    z-index: 999998;
+
+    transition:
+      width 0.25s ease,
+      height 0.25s ease,
+      background 0.25s ease,
+      border-color 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+
+  /* When hovering a link/button */
+  .custom-cursor-ring.custom-cursor-hover {
+    width: 48px;
+    height: 48px;
+
+    border-color: rgba(142, 203, 255, 0.85);
+
+    background: rgba(142, 203, 255, 0.09);
+
+    box-shadow:
+      0 0 25px rgba(142, 203, 255, 0.15);
+  }
+}
+
+
+/* Keep normal cursor on phones/tablets */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none;
+  }
+}
