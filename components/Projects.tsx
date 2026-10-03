@@ -32,7 +32,7 @@ const projects = [
       "MVC Architecture",
     ],
     category: "Web Application",
-    image: "",
+    image: "projects/unigo.png",
     github: "https://github.com/ags-arnab/CSE470-UniGo.git",
     demo: "#",
   },
